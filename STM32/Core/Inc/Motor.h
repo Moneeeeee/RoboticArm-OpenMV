@@ -5,7 +5,6 @@
 #ifndef STM32_MOTOR_H
 #define STM32_MOTOR_H
 #include "main.h"
-
 void Motor_Init(void);
 void forward(uint16_t speed);
 void backward(uint16_t speed);

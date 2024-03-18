@@ -67,7 +67,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 
-    RetargetInit(&huart1);
+  RetargetInit(&huart1);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -83,7 +83,6 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-ft
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -101,6 +100,10 @@ ft
   while (1)
   {
     /* USER CODE END WHILE */
+
+
+
+
 
     /* USER CODE BEGIN 3 */
   }
@@ -147,7 +150,14 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART2)
+    {
+        //openmv发来两个数据包x,y--结算
+        // 接收到的数据存储在一个缓冲区中
+    }
+}
 /* USER CODE END 4 */
 
 /**
