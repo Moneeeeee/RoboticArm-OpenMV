@@ -48,6 +48,8 @@ uart = pyb.UART(3, 115200)
 global_center_x = img_width / 2
 global_center_y = img_height / 2
 
+
+#应该也使得检测到的矩形框大小一样。这样能确保视深！
 while(True):
     clock.tick() # Track elapsed milliseconds between snapshots().
     img = sensor.snapshot() # 拍照，返回图像
@@ -71,10 +73,14 @@ while(True):
             if color_code == pink_color_code:
                 img.draw_string(x, y - 10, "red", color = (0xFF, 0x00, 0x00))
 
+            # 计算矩形边框的长和宽
+            rect_width = width
+            rect_height = height
+
             #用矩形标记出目标颜色区域
             img.draw_rectangle([x, y, width, height])
-            print(center_x - global_center_x,y - img_height)
-            uart.write("{},{}\n".format(offset_x, offset_y))
+            #print(center_x - global_center_x,y - img_height)
+            uart.write("{},{},{},{}\n".format(rect_width, rect_height, center_x - global_center_x, center_y - global_center_y))
             #在目标颜色区域的中心画十字形标记
             img.draw_cross(center_x, center_y)
 
