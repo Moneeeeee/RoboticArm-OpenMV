@@ -226,3 +226,37 @@ void Translate_Move(char *Dir, uint16_t speed) {
 //    }
 //    // 更多方向的逻辑...
 }
+
+// 更新PID控制器状态
+int PID_Update(PIDController *pid, int dt) {
+    // 计算误差
+    int error = pid->target_position - pid->current_position;
+
+    // 计算积分项
+    pid->integral += error * dt;
+
+    // 计算微分项
+    int derivative = (error - pid->prev_error) / dt;
+
+    // 计算控制输出
+    int output = KP * error + KI * pid->integral + KD * derivative;
+
+    // 更新前一次误差
+    pid->prev_error = error;
+
+    return output;
+}
+
+void PIDController_Init(int member1, int member2, PIDController *PID_x, PIDController *PID_y) {
+    // 初始化第一个PIDController结构体的成员变量
+    PID_x->target_position = 0;           // 设置目标位置
+    PID_x->current_position = member1;    // 设置当前位置
+    PID_x->prev_error = 0;                // 初始化前一次误差
+    PID_x->integral = 0;                  // 初始化积分项
+
+    // 初始化第二个PIDController结构体的成员变量
+    PID_y->target_position = 0;           // 设置目标位置
+    PID_y->current_position = member2;    // 设置当前位置
+    PID_y->prev_error = 0;                // 初始化前一次误差
+    PID_y->integral = 0;                  // 初始化积分项
+}

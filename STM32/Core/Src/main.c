@@ -56,7 +56,8 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int offset_x = 0;
+int offset_y = 0;
 /* USER CODE END 0 */
 
 /**
@@ -66,8 +67,11 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
   RetargetInit(&huart1);
+
+  uint8_t rx_buffer[BUFFER_SIZE];  // 声明接收缓冲�?
+  uint32_t rx_index = 0;  // 声明接收缓冲区索�?
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -93,6 +97,13 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_UART_Receive_IT(&huart2, (uint8_t *)rx_buffer, 1);
+
+
+    PIDController PID_x;
+    PIDController PID_y;
+    PIDController_Init(offset_x, offset_y, &PID_x, &PID_y);
+    // 设置时间步长（假设时间步长为0.1秒，�?10000微秒�?
+    int dt = 10000;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -101,11 +112,26 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-
-
-
-
     /* USER CODE BEGIN 3 */
+
+      int Speed_Out_X = PID_Update(&PID_x, dt);
+      int Speed_Out_Y = PID_Update(&PID_y, dt);
+
+      if(Speed_Out_X > 0){
+          Translate_Move("Left",Speed_Out_X);
+      }
+
+      if(Speed_Out_X < 0){
+          Translate_Move("Right",Speed_Out_X);
+      }
+
+      if(Speed_Out_Y > 0){
+          Forward(Speed_Out_Y);
+      }
+
+      if(Speed_Out_Y < 0){
+          Backward(Speed_Out_Y);
+      }
   }
   /* USER CODE END 3 */
 }
@@ -154,10 +180,33 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     if (huart->Instance == USART2)
     {
-        //openmv发来两个数据包x,y--结算
-        // 接收到的数据存储在一个缓冲区中
+        // 假设您的串口接收缓冲区为rx_buffer，缓冲区大小为buffer_size
+        static uint8_t rx_buffer[BUFFER_SIZE];
+        static uint32_t rx_index = 0;
+
+        // 将接收到的数据存入缓冲区
+        rx_buffer[rx_index++] = huart->Instance->DR;
+
+        // 判断是否接收到完整的�?行数�?
+        if (rx_index >= 3 && rx_buffer[rx_index - 1] == '\n' && rx_buffer[rx_index - 2] == '\r')
+        {
+            // 解析接收到的数据
+
+            sscanf((char*)rx_buffer, "%d,%d", &offset_x, &offset_y);
+
+            // 在这里处理接收到的数据，例如打印到串口或者执行其他操�?
+
+            // 清空接收缓冲区和索引，准备接收下�?条数�?
+            memset(rx_buffer, 0, BUFFER_SIZE);
+            rx_index = 0;
+        }
+
+        // 启动下一次接�?
+        HAL_UART_Receive_IT(huart, &rx_buffer[rx_index], 1);
     }
 }
+
+
 /* USER CODE END 4 */
 
 /**

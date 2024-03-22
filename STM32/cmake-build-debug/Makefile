@@ -128,6 +128,30 @@ STM32.elf/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32.elf.dir\build.make CMakeFiles/STM32.elf.dir/build
 .PHONY : STM32.elf/fast
 
+Core/Src/Control.obj: Core/Src/Control.c.obj
+.PHONY : Core/Src/Control.obj
+
+# target to build an object file
+Core/Src/Control.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32.elf.dir\build.make CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj
+.PHONY : Core/Src/Control.c.obj
+
+Core/Src/Control.i: Core/Src/Control.c.i
+.PHONY : Core/Src/Control.i
+
+# target to preprocess a source file
+Core/Src/Control.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32.elf.dir\build.make CMakeFiles/STM32.elf.dir/Core/Src/Control.c.i
+.PHONY : Core/Src/Control.c.i
+
+Core/Src/Control.s: Core/Src/Control.c.s
+.PHONY : Core/Src/Control.s
+
+# target to generate assembly for a file
+Core/Src/Control.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32.elf.dir\build.make CMakeFiles/STM32.elf.dir/Core/Src/Control.c.s
+.PHONY : Core/Src/Control.c.s
+
 Core/Src/Motor.obj: Core/Src/Motor.c.obj
 .PHONY : Core/Src/Motor.obj
 
@@ -745,6 +769,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... STM32.elf
+	@echo ... Core/Src/Control.obj
+	@echo ... Core/Src/Control.i
+	@echo ... Core/Src/Control.s
 	@echo ... Core/Src/Motor.obj
 	@echo ... Core/Src/Motor.i
 	@echo ... Core/Src/Motor.s

@@ -33,16 +33,31 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "stdint.h"
 #include "tim.h"
+#include "usart.h"
+#include "gpio.h"
+#include "retarget.h"
+#include "string.h"
+#include "Motor.h"
+#include "Control.h"
+
+
+
+// PID 控制器参数
+#define KP 0.5   // 比例系数
+#define KI 0.2   // 积分系数
+#define KD 0.1   // 微分系数
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
+#define BUFFER_SIZE 64  // 定义接收缓冲区大小为 64 字节
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-
+extern int offset_x;
+extern int offset_y;
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/

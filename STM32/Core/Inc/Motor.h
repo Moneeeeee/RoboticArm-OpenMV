@@ -23,4 +23,16 @@ void Backward(uint16_t speed);
 void Left_Turn(uint16_t speed);
 void Right_Turn(uint16_t speed);
 void Translate_Move(char *Dir, uint16_t speed);
+
+// PID 控制器状态
+typedef struct {
+    int target_position;    // 目标位置
+    int current_position;   // 当前位置
+    int prev_error;         // 前一次误差
+    int integral;           // 积分项
+} PIDController;
+
+
+int PID_Update(PIDController *pid, int dt);
+void PIDController_Init(int member1, int member2, PIDController *PID_x, PIDController *PID_y);
 #endif //STM32_MOTOR_H
