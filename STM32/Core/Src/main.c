@@ -152,94 +152,62 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-//      int Speed_Out_X = PID_Update(&PID_x, dt);
-//      int Speed_Out_Y = PID_Update(&PID_y, dt);
-//
-//      if(Speed_Out_X > 0){
-//          Translate_Move("Left",Speed_Out_X);
-//      }
-//
-//      if(Speed_Out_X < 0){
-//          Translate_Move("Right",Speed_Out_X);
-//      }
-//
-//      if(Speed_Out_Y > 0){
-//          Forward(Speed_Out_Y);
-//      }
-//
-//      if(Speed_Out_Y < 0){
-//          Backward(Speed_Out_Y);
-//      }
-//
-
       if (OpenMV_Rx_Data_Analysis_State)
       {
 
           OpenMV_Rx_Data_Analysis_State = 0;
-          //下面是对无线串口采集到的数据进行处理的函数，每次接收到一次有效数据之后处理一�??
-         // OpenMV_Rx_Data
-          printf("%d,%d,%d\r\n",duoji_1, duoji_2,duoji_3);
-//          char buffer[20]; // 用于存储转换后的字符串
-//          sprintf(buffer, "%d\r\n", OpenMV_Rx_Data[0]); // 将整数转换为字符串
-//
-//          HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+
+          //printf("%d,%d,%d\r\n",duoji_1, duoji_2,duoji_3);
+
           chasu = PID_Update(&PID_x,dt,OpenMV_Rx_Data[0]);
-          duoji_1 += -(OpenMV_Rx_Data[0]==1)*OpenMV_Rx_Data[1]+(OpenMV_Rx_Data[0]==0)*OpenMV_Rx_Data[1];
-          duoji_2 += -(OpenMV_Rx_Data[2]==1)*OpenMV_Rx_Data[3]+(OpenMV_Rx_Data[2]==0)*OpenMV_Rx_Data[3];
-          duoji_3 += -(OpenMV_Rx_Data[4]==1)*OpenMV_Rx_Data[5]+(OpenMV_Rx_Data[4]==0)*OpenMV_Rx_Data[5];
-//            if(OpenMV_Rx_Data[0]==1)Arm_Shen();
-//            else if(OpenMV_Rx_Data[0]==2)Arm_Suo();
-//            else if(OpenMV_Rx_Data[0]==3)Arm_Jia();
-//            else if(OpenMV_Rx_Data[0]==4)Arm_Song();
+          //调整舵机的值
+//          duoji_1 += -(OpenMV_Rx_Data[0]==1)*OpenMV_Rx_Data[1]+(OpenMV_Rx_Data[0]==0)*OpenMV_Rx_Data[1];
+//          duoji_2 += -(OpenMV_Rx_Data[2]==1)*OpenMV_Rx_Data[3]+(OpenMV_Rx_Data[2]==0)*OpenMV_Rx_Data[3];
+//          duoji_3 += -(OpenMV_Rx_Data[4]==1)*OpenMV_Rx_Data[5]+(OpenMV_Rx_Data[4]==0)*OpenMV_Rx_Data[5];
+            //机械臂动作
+            if(OpenMV_Rx_Data[0]==1)Arm_Shen();
+            else if(OpenMV_Rx_Data[0]==2)Arm_Suo();
+            else if(OpenMV_Rx_Data[0]==3)Arm_Jia();
+            else if(OpenMV_Rx_Data[0]==4)Arm_Song();
+          printf("%d\r\n",chasu);
           memset(OpenMV_Rx_Data, 0, sizeof(OpenMV_Rx_Data));
       }
       else OpenMV_Check_Data_Task();
-//      printf("%d\r\n",OpenMV_Rx_Data_Analysis_State2);
 
-//      if(xunji_status==0)
-//      {
-//          //正常循迹状�?�代码实�?
-//      }
-//
-//      else if(xunji_status==1)
-//      {
-//
-//
-//      }
-//      if (OpenMV_Rx_Data_Analysis_State2)
-//      {
-//
-//          //下面是对无线串口采集到的数据进行处理的函数，每次接收到一次有效数据之后处理一�??
-//
-//          chasu = PID_Update(&PID_x,dt,OpenMV_Rx_Data2[0]);
-//          // 发送数据
-//          char txData[] = "Hello, UART!\r\n";
-//          HAL_UART_Transmit(&huart2, (uint8_t *)txData, strlen(txData), HAL_MAX_DELAY);
-////              if(OpenMV_Rx_Data2[2]<20)
-////              {
-////                  stop_flag=0;
-////                  if(OpenMV_Rx_Data2[1]<3)chasu_flag=0;
-////              }
-//
-//          OpenMV_Rx_Data_Analysis_State2 = 0;
-//          memset(OpenMV_Rx_Data2, 0, sizeof(OpenMV_Rx_Data2));
-//      }
-//      else OpenMV_Check_Data_Task2();
-//      Forward(setspeed*stop_flag+chasu*chasu_flag,setspeed*stop_flag-chasu*chasu_flag);//输入左轮 右轮的�?�度
-      Forward(chasu,-chasu);//输入左轮 右轮的�?�度
+      if(xunji_status==0)
+      {
+          //正常循迹状�?�代码实�?
+      }
+
+      else if(xunji_status==1)
+      {
+
+      }
+      if (OpenMV_Rx_Data_Analysis_State2)
+      {
+
+          //下面是对无线串口采集到的数据进行处理的函数，每次接收到一次有效数据之后处理一�??
+
+          chasu = PID_Update(&PID_x,dt,OpenMV_Rx_Data2[0]);
+          // 发送数据
+          char txData[] = "Hello, UART!\r\n";
+          HAL_UART_Transmit(&huart2, (uint8_t *)txData, strlen(txData), HAL_MAX_DELAY);
+//              if(OpenMV_Rx_Data2[2]<20)
+//              {
+//                  stop_flag=0;
+//                  if(OpenMV_Rx_Data2[1]<3)chasu_flag=0;
+//              }
+
+          OpenMV_Rx_Data_Analysis_State2 = 0;
+          memset(OpenMV_Rx_Data2, 0, sizeof(OpenMV_Rx_Data2));
+      }
+      else OpenMV_Check_Data_Task2();
+      Forward(setspeed*stop_flag+chasu*chasu_flag,setspeed*stop_flag-chasu*chasu_flag);//输入左轮 右轮的�?�度
+//      Forward(chasu,-chasu);//输入左轮 右轮的�?�度
 //      Forward(500,500);//输入左轮 右轮的�?�度
 
-//      __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, duoji_1);// Left
-//
-//
-//
-//      __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, duoji_2);//右边=�?
-////        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, 250);//右边=�?
-//
-//      __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, duoji_3);//Carry-release
       HAL_Delay(100);
-//      printf("duoji1:%d,duoji2:%d,duoji3:%d\r\n",duoji_1, duoji_2,duoji_3);
+
   }
   /* USER CODE END 3 */
 }

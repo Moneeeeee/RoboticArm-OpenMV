@@ -105,12 +105,12 @@ void Back_Right(uint8_t state){
 }
 
 void Front_Left(uint8_t state){
-    if(state == 1){
+    if(state == 0){
         HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3,GPIO_PIN_SET);
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15,GPIO_PIN_RESET);
     }
 
-    else if(state == 0){
+    else if(state == 1){
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15,GPIO_PIN_SET);
         HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3,GPIO_PIN_RESET);
     }
