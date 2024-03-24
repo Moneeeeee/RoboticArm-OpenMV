@@ -121,8 +121,8 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-//  HAL_UART_Receive_IT(&huart1, (uint8_t *)rx_buffer, 1);
-  HAL_UART_Receive_IT(&huart2, (uint8_t *)rx_buffer2, 1);
+  HAL_UART_Receive_IT(&huart1, (uint8_t *)rx_buffer, 1);
+//  HAL_UART_Receive_IT(&huart2, (uint8_t *)rx_buffer2, 1);
     HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3);
@@ -180,28 +180,33 @@ int main(void)
           //下面是对无线串口采集到的数据进行处理的函数，每次接收到一次有效数据之后处理一�??
          // OpenMV_Rx_Data
           printf("%d,%d,%d\r\n",duoji_1, duoji_2,duoji_3);
-//          duoji_1 += -(OpenMV_Rx_Data[0]==1)*OpenMV_Rx_Data[1]+(OpenMV_Rx_Data[0]==0)*OpenMV_Rx_Data[1];
-//          duoji_2 += -(OpenMV_Rx_Data[2]==1)*OpenMV_Rx_Data[3]+(OpenMV_Rx_Data[2]==0)*OpenMV_Rx_Data[3];
-//          duoji_3 += -(OpenMV_Rx_Data[4]==1)*OpenMV_Rx_Data[5]+(OpenMV_Rx_Data[4]==0)*OpenMV_Rx_Data[5];
-            if(OpenMV_Rx_Data[0]==1)Arm_Shen();
-            else if(OpenMV_Rx_Data[0]==2)Arm_Suo();
-            else if(OpenMV_Rx_Data[0]==3)Arm_Jia();
-            else if(OpenMV_Rx_Data[0]==4)Arm_Song();
+//          char buffer[20]; // 用于存储转换后的字符串
+//          sprintf(buffer, "%d\r\n", OpenMV_Rx_Data[0]); // 将整数转换为字符串
+//
+//          HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+          chasu = PID_Update(&PID_x,dt,OpenMV_Rx_Data[0]);
+          duoji_1 += -(OpenMV_Rx_Data[0]==1)*OpenMV_Rx_Data[1]+(OpenMV_Rx_Data[0]==0)*OpenMV_Rx_Data[1];
+          duoji_2 += -(OpenMV_Rx_Data[2]==1)*OpenMV_Rx_Data[3]+(OpenMV_Rx_Data[2]==0)*OpenMV_Rx_Data[3];
+          duoji_3 += -(OpenMV_Rx_Data[4]==1)*OpenMV_Rx_Data[5]+(OpenMV_Rx_Data[4]==0)*OpenMV_Rx_Data[5];
+//            if(OpenMV_Rx_Data[0]==1)Arm_Shen();
+//            else if(OpenMV_Rx_Data[0]==2)Arm_Suo();
+//            else if(OpenMV_Rx_Data[0]==3)Arm_Jia();
+//            else if(OpenMV_Rx_Data[0]==4)Arm_Song();
           memset(OpenMV_Rx_Data, 0, sizeof(OpenMV_Rx_Data));
       }
       else OpenMV_Check_Data_Task();
 //      printf("%d\r\n",OpenMV_Rx_Data_Analysis_State2);
 
-      if(xunji_status==0)
-      {
-          //正常循迹状�?�代码实�?
-      }
-
-      else if(xunji_status==1)
-      {
-
-
-      }
+//      if(xunji_status==0)
+//      {
+//          //正常循迹状�?�代码实�?
+//      }
+//
+//      else if(xunji_status==1)
+//      {
+//
+//
+//      }
 //      if (OpenMV_Rx_Data_Analysis_State2)
 //      {
 //

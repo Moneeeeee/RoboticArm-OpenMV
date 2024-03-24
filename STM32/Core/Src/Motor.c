@@ -8,7 +8,7 @@
 //后缩状态duoji2:70
 //机械臂初始化
 int step_shen = 70;
-int step_zhua =  250;
+int step_zhua =  245;
 void Arm_Init(void){
     //初始
     __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, step_shen);//后

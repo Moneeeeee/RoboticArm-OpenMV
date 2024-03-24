@@ -213,7 +213,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 /* USER CODE BEGIN 1 */
 void OpenMV_Check_Data_Task(void)
 {
-    uint16_t i;
+//    uint16_t i;
     static int flag;
     flag = 0;
     if (!OpenMV_Uart_Rx_Index) // 没有数据 �?�?
@@ -241,8 +241,19 @@ void OpenMV_Check_Data_Task(void)
     }
     for(int i=0;i<OPENMV_Uart_RX_LENGTH_MAX-3;i++)
     {
-        OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[i+2];
+//        OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[i+2];
+        OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 1] << 8; // �?8�?
+        OpenMV_Rx_Data[i] |= OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 0];     // �?8�?
     }
+//    for (int i = 0; i < (OpenMV_Uart_Rx_Index - 3); i++)
+//    {
+//          OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + i];
+//        OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 1] << 8; // �?8�?
+//        OpenMV_Rx_Data[i] |= OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 0];     // �?8�?
+//              OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + i  + 0] << 8; // �?8�?
+//        OpenMV_Rx_Data[i] |= OpenMV_Uart_Rx_Buffer[2 +i + 1];     // �?8�?
+//          LED_RED_On();
+//    }
     OpenMV_Rx_Data_Analysis_State = 1; // 解析状�?�置1
     OpenMV_Uart_Rx_Index = 0;
 }
@@ -300,7 +311,8 @@ void OpenMV_Check_Data_Task2(void)
 }
 extern int chasu;
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-    if (huart == &huart2)//无线串口
+
+    if (huart == &huart1)//无线串口
     {
         // 将接收到的数据存入缓冲区
         if (OpenMV_Uart_Rx_Index < OPENMV_Uart_RX_LENGTH_MAX) // 接收缓冲是否溢出
@@ -308,7 +320,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
             OpenMV_Uart_Rx_Buffer[OpenMV_Uart_Rx_Index] = huart->Instance->DR;; // 放入缓存
             OpenMV_Uart_Rx_Index++;                                            // 索引�??1
         }
-        HAL_UART_Receive_IT(&huart2, OpenMV_Uart_Rx_Buffer + OpenMV_Uart_Rx_Index, 1); // 继续接收下一个字�??
+        HAL_UART_Receive_IT(&huart1, OpenMV_Uart_Rx_Buffer + OpenMV_Uart_Rx_Index, 1); // 继续接收下一个字�??
 
     }
 //    if (huart == &huart1)//OPENMV
