@@ -68,10 +68,24 @@ include CMakeFiles/STM32.elf.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/STM32.elf.dir/flags.make
 
+CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj: CMakeFiles/STM32.elf.dir/flags.make
+CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/Control.c
+CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj"
+	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\Control.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\Control.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\Control.c
+
+CMakeFiles/STM32.elf.dir/Core/Src/Control.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/STM32.elf.dir/Core/Src/Control.c.i"
+	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\Control.c > CMakeFiles\STM32.elf.dir\Core\Src\Control.c.i
+
+CMakeFiles/STM32.elf.dir/Core/Src/Control.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/STM32.elf.dir/Core/Src/Control.c.s"
+	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\Control.c -o CMakeFiles\STM32.elf.dir\Core\Src\Control.c.s
+
 CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/Motor.c
 CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\Motor.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\Motor.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\Motor.c
 
 CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.i: cmake_force
@@ -85,7 +99,7 @@ CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.s: cmake_force
 CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/gpio.c
 CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\gpio.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\gpio.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\gpio.c
 
 CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.i: cmake_force
@@ -99,7 +113,7 @@ CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.s: cmake_force
 CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/main.c
 CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\main.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\main.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\main.c
 
 CMakeFiles/STM32.elf.dir/Core/Src/main.c.i: cmake_force
@@ -113,7 +127,7 @@ CMakeFiles/STM32.elf.dir/Core/Src/main.c.s: cmake_force
 CMakeFiles/STM32.elf.dir/Core/Src/retarget.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Src/retarget.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/retarget.c
 CMakeFiles/STM32.elf.dir/Core/Src/retarget.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/retarget.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/retarget.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/retarget.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\retarget.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\retarget.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\retarget.c
 
 CMakeFiles/STM32.elf.dir/Core/Src/retarget.c.i: cmake_force
@@ -127,7 +141,7 @@ CMakeFiles/STM32.elf.dir/Core/Src/retarget.c.s: cmake_force
 CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/stm32f1xx_hal_msp.c
 CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_hal_msp.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\stm32f1xx_hal_msp.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\stm32f1xx_hal_msp.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\stm32f1xx_hal_msp.c
 
 CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_hal_msp.c.i: cmake_force
@@ -141,7 +155,7 @@ CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_hal_msp.c.s: cmake_force
 CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_it.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_it.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/stm32f1xx_it.c
 CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_it.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_it.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_it.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_it.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\stm32f1xx_it.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\stm32f1xx_it.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\stm32f1xx_it.c
 
 CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_it.c.i: cmake_force
@@ -155,7 +169,7 @@ CMakeFiles/STM32.elf.dir/Core/Src/stm32f1xx_it.c.s: cmake_force
 CMakeFiles/STM32.elf.dir/Core/Src/syscalls.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Src/syscalls.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/syscalls.c
 CMakeFiles/STM32.elf.dir/Core/Src/syscalls.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/syscalls.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/syscalls.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/syscalls.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\syscalls.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\syscalls.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\syscalls.c
 
 CMakeFiles/STM32.elf.dir/Core/Src/syscalls.c.i: cmake_force
@@ -169,7 +183,7 @@ CMakeFiles/STM32.elf.dir/Core/Src/syscalls.c.s: cmake_force
 CMakeFiles/STM32.elf.dir/Core/Src/sysmem.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Src/sysmem.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/sysmem.c
 CMakeFiles/STM32.elf.dir/Core/Src/sysmem.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/sysmem.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/sysmem.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/sysmem.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\sysmem.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\sysmem.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\sysmem.c
 
 CMakeFiles/STM32.elf.dir/Core/Src/sysmem.c.i: cmake_force
@@ -183,7 +197,7 @@ CMakeFiles/STM32.elf.dir/Core/Src/sysmem.c.s: cmake_force
 CMakeFiles/STM32.elf.dir/Core/Src/system_stm32f1xx.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Src/system_stm32f1xx.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/system_stm32f1xx.c
 CMakeFiles/STM32.elf.dir/Core/Src/system_stm32f1xx.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/system_stm32f1xx.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/system_stm32f1xx.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/system_stm32f1xx.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\system_stm32f1xx.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\system_stm32f1xx.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\system_stm32f1xx.c
 
 CMakeFiles/STM32.elf.dir/Core/Src/system_stm32f1xx.c.i: cmake_force
@@ -197,7 +211,7 @@ CMakeFiles/STM32.elf.dir/Core/Src/system_stm32f1xx.c.s: cmake_force
 CMakeFiles/STM32.elf.dir/Core/Src/tim.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Src/tim.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/tim.c
 CMakeFiles/STM32.elf.dir/Core/Src/tim.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/tim.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/tim.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/tim.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\tim.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\tim.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\tim.c
 
 CMakeFiles/STM32.elf.dir/Core/Src/tim.c.i: cmake_force
@@ -211,7 +225,7 @@ CMakeFiles/STM32.elf.dir/Core/Src/tim.c.s: cmake_force
 CMakeFiles/STM32.elf.dir/Core/Src/usart.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Src/usart.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/usart.c
 CMakeFiles/STM32.elf.dir/Core/Src/usart.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/usart.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/STM32.elf.dir/Core/Src/usart.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Core/Src/usart.c.obj -MF CMakeFiles\STM32.elf.dir\Core\Src\usart.c.obj.d -o CMakeFiles\STM32.elf.dir\Core\Src\usart.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Src\usart.c
 
 CMakeFiles/STM32.elf.dir/Core/Src/usart.c.i: cmake_force
@@ -224,7 +238,7 @@ CMakeFiles/STM32.elf.dir/Core/Src/usart.c.s: cmake_force
 
 CMakeFiles/STM32.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Startup/startup_stm32f103c8tx.s
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building ASM object CMakeFiles/STM32.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building ASM object CMakeFiles/STM32.elf.dir/Core/Startup/startup_stm32f103c8tx.s.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -o CMakeFiles\STM32.elf.dir\Core\Startup\startup_stm32f103c8tx.s.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Startup\startup_stm32f103c8tx.s
 
 CMakeFiles/STM32.elf.dir/Core/Startup/startup_stm32f103c8tx.s.i: cmake_force
@@ -238,7 +252,7 @@ CMakeFiles/STM32.elf.dir/Core/Startup/startup_stm32f103c8tx.s.s: cmake_force
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.i: cmake_force
@@ -252,7 +266,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c.s: cma
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_cortex.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_cortex.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_cortex.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c.i: cmake_force
@@ -266,7 +280,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.i: cmake_force
@@ -280,7 +294,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c.s:
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_exti.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_exti.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_exti.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.i: cmake_force
@@ -294,7 +308,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c.s
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.i: cmake_force
@@ -308,7 +322,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c.
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash_ex.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash_ex.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash_ex.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c.i: cmake_force
@@ -322,7 +336,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.i: cmake_force
@@ -336,7 +350,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c.s
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio_ex.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio_ex.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio_ex.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c.i: cmake_force
@@ -350,7 +364,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_pwr.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_pwr.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_pwr.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c.i: cmake_force
@@ -364,7 +378,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c.s:
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.i: cmake_force
@@ -378,7 +392,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c.s:
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc_ex.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc_ex.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_rcc_ex.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c.i: cmake_force
@@ -392,7 +406,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.i: cmake_force
@@ -406,7 +420,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c.s:
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim_ex.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim_ex.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_tim_ex.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c.i: cmake_force
@@ -420,7 +434,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj: CMakeFiles/STM32.elf.dir/flags.make
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj: C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj: CMakeFiles/STM32.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj"
 	C:\PROGRA~2\GNUARM~1\102021~1.10\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj -MF CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_uart.c.obj.d -o CMakeFiles\STM32.elf.dir\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_uart.c.obj -c C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_uart.c
 
 CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.i: cmake_force
@@ -433,6 +447,7 @@ CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.s
 
 # Object files for target STM32.elf
 STM32_elf_OBJECTS = \
+"CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj" \
 "CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj" \
 "CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.obj" \
 "CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj" \
@@ -463,6 +478,7 @@ STM32_elf_OBJECTS = \
 # External object files for target STM32.elf
 STM32_elf_EXTERNAL_OBJECTS =
 
+STM32.elf: CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj
 STM32.elf: CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj
 STM32.elf: CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.obj
 STM32.elf: CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj
@@ -491,7 +507,7 @@ STM32.elf: CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_h
 STM32.elf: CMakeFiles/STM32.elf.dir/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c.obj
 STM32.elf: CMakeFiles/STM32.elf.dir/build.make
 STM32.elf: CMakeFiles/STM32.elf.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Linking C executable STM32.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Linking C executable STM32.elf"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\STM32.elf.dir\link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Building C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/cmake-build-debug/STM32.hex"
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Building C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/cmake-build-debug/STM32.bin"

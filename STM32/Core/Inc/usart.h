@@ -44,7 +44,8 @@ void MX_USART1_UART_Init(void);
 void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void OpenMV_Check_Data_Task(void);
+void OpenMV_Check_Data_Task2(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

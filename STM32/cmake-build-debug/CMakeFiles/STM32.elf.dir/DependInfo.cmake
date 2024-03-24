@@ -30,6 +30,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/Control.c" "CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj" "gcc" "CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj.d"
   "C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/Motor.c" "CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj" "gcc" "CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj.d"
   "C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/gpio.c" "CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.obj" "gcc" "CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.obj.d"
   "C:/Users/Monee/Documents/Electronic-Design/Project/RoboticArm/STM32/Core/Src/main.c" "CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj" "gcc" "CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj.d"

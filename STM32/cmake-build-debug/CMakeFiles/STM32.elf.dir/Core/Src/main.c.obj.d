@@ -36,7 +36,6 @@ CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj: \
  C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Drivers\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_uart.h \
  C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/tim.h \
  C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/main.h \
- C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/tim.h \
  C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/usart.h \
  C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/gpio.h \
  C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/retarget.h \
@@ -67,4 +66,13 @@ CMakeFiles/STM32.elf.dir/Core/Src/main.c.obj: \
  c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\sys\_locale.h \
  c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\stdio.h \
  c:\progra~2\gnuarm~1\102021~1.10\lib\gcc\arm-none-eabi\10.3.1\include\stdarg.h \
- c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\sys\stdio.h
+ c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\sys\stdio.h \
+ c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\string.h \
+ c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\strings.h \
+ c:\progra~2\gnuarm~1\102021~1.10\arm-none-eabi\include\sys\string.h \
+ C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/Motor.h \
+ C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/Control.h \
+ C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/tim.h \
+ C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/usart.h \
+ C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/gpio.h \
+ C:\Users\Monee\Documents\Electronic-Design\Project\RoboticArm\STM32\Core\Inc/retarget.h

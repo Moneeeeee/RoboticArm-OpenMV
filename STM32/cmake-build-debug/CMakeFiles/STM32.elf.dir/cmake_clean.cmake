@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj"
+  "CMakeFiles/STM32.elf.dir/Core/Src/Control.c.obj.d"
   "CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj"
   "CMakeFiles/STM32.elf.dir/Core/Src/Motor.c.obj.d"
   "CMakeFiles/STM32.elf.dir/Core/Src/gpio.c.obj"

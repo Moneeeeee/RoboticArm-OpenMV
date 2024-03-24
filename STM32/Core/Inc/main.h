@@ -42,10 +42,10 @@ extern "C" {
 
 
 
-// PID 控制器参数
-#define KP 0.5   // 比例系数
-#define KI 0.2   // 积分系数
-#define KD 0.1   // 微分系数
+// PID 控制器参�??
+#define KP 5   // 比例系数
+#define KI 0   // 积分系数
+#define KD 0   // 微分系数
 
 /* USER CODE END Includes */
 

@@ -51,13 +51,37 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+void ChangeTimerPrescaler(TIM_HandleTypeDef *htim, uint32_t newPrescaler) {
+    // 停止定时�??
+    HAL_TIM_Base_Stop(htim);
 
+    // 修改预分频系�??
+    htim->Init.Prescaler = newPrescaler;
+
+    // 重新初始化定时器
+    HAL_TIM_Base_Init(htim);
+
+    // 重新启动定时�??
+    HAL_TIM_Base_Start(htim);
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 int offset_x = 0;
 int offset_y = 0;
+extern uint8_t OpenMV_Rx_Data_Analysis_State;
+extern short OpenMV_Rx_Data[6];             // 接收OpenMV数据
+extern uint8_t OpenMV_Rx_Data_Analysis_State2;
+extern short OpenMV_Rx_Data2[6];             // 接收OpenMV数据
+int duoji_1=150;
+int duoji_2=180;
+int duoji_3=230;
+int xunji_status=1;
+int setspeed=0;
+int chasu=0;
+int chasu_flag=1;
+int stop_flag=1;
 /* USER CODE END 0 */
 
 /**
@@ -69,8 +93,9 @@ int main(void)
   /* USER CODE BEGIN 1 */
   RetargetInit(&huart1);
 
-  uint8_t rx_buffer[BUFFER_SIZE];  // 声明接收缓冲�?
-  uint32_t rx_index = 0;  // 声明接收缓冲区索�?
+  uint8_t rx_buffer[BUFFER_SIZE];  // 声明接收缓冲�?????????????
+    uint8_t rx_buffer2[BUFFER_SIZE];  // 声明接收缓冲�?????????????
+  uint32_t rx_index = 0;  // 声明接收缓冲区索�?????????????
 
   /* USER CODE END 1 */
 
@@ -96,42 +121,120 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive_IT(&huart2, (uint8_t *)rx_buffer, 1);
+//  HAL_UART_Receive_IT(&huart1, (uint8_t *)rx_buffer, 1);
+  HAL_UART_Receive_IT(&huart2, (uint8_t *)rx_buffer2, 1);
+    HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4);
 
+
+    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
+//    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_4);
+
+
+    Arm_Init();
 
     PIDController PID_x;
     PIDController PID_y;
     PIDController_Init(offset_x, offset_y, &PID_x, &PID_y);
-    // 设置时间步长（假设时间步长为0.1秒，�?10000微秒�?
+    // 设置时间步长（假设时间步长为0.1秒，�?????????????10000微秒�?????????????
     int dt = 10000;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
-      int Speed_Out_X = PID_Update(&PID_x, dt);
-      int Speed_Out_Y = PID_Update(&PID_y, dt);
+//      int Speed_Out_X = PID_Update(&PID_x, dt);
+//      int Speed_Out_Y = PID_Update(&PID_y, dt);
+//
+//      if(Speed_Out_X > 0){
+//          Translate_Move("Left",Speed_Out_X);
+//      }
+//
+//      if(Speed_Out_X < 0){
+//          Translate_Move("Right",Speed_Out_X);
+//      }
+//
+//      if(Speed_Out_Y > 0){
+//          Forward(Speed_Out_Y);
+//      }
+//
+//      if(Speed_Out_Y < 0){
+//          Backward(Speed_Out_Y);
+//      }
+//
 
-      if(Speed_Out_X > 0){
-          Translate_Move("Left",Speed_Out_X);
+      if (OpenMV_Rx_Data_Analysis_State)
+      {
+
+          OpenMV_Rx_Data_Analysis_State = 0;
+          //下面是对无线串口采集到的数据进行处理的函数，每次接收到一次有效数据之后处理一�??
+         // OpenMV_Rx_Data
+          printf("%d,%d,%d\r\n",duoji_1, duoji_2,duoji_3);
+//          duoji_1 += -(OpenMV_Rx_Data[0]==1)*OpenMV_Rx_Data[1]+(OpenMV_Rx_Data[0]==0)*OpenMV_Rx_Data[1];
+//          duoji_2 += -(OpenMV_Rx_Data[2]==1)*OpenMV_Rx_Data[3]+(OpenMV_Rx_Data[2]==0)*OpenMV_Rx_Data[3];
+//          duoji_3 += -(OpenMV_Rx_Data[4]==1)*OpenMV_Rx_Data[5]+(OpenMV_Rx_Data[4]==0)*OpenMV_Rx_Data[5];
+            if(OpenMV_Rx_Data[0]==1)Arm_Shen();
+            else if(OpenMV_Rx_Data[0]==2)Arm_Suo();
+            else if(OpenMV_Rx_Data[0]==3)Arm_Jia();
+            else if(OpenMV_Rx_Data[0]==4)Arm_Song();
+          memset(OpenMV_Rx_Data, 0, sizeof(OpenMV_Rx_Data));
+      }
+      else OpenMV_Check_Data_Task();
+//      printf("%d\r\n",OpenMV_Rx_Data_Analysis_State2);
+
+      if(xunji_status==0)
+      {
+          //正常循迹状�?�代码实�?
       }
 
-      if(Speed_Out_X < 0){
-          Translate_Move("Right",Speed_Out_X);
-      }
+      else if(xunji_status==1)
+      {
 
-      if(Speed_Out_Y > 0){
-          Forward(Speed_Out_Y);
-      }
 
-      if(Speed_Out_Y < 0){
-          Backward(Speed_Out_Y);
       }
+//      if (OpenMV_Rx_Data_Analysis_State2)
+//      {
+//
+//          //下面是对无线串口采集到的数据进行处理的函数，每次接收到一次有效数据之后处理一�??
+//
+//          chasu = PID_Update(&PID_x,dt,OpenMV_Rx_Data2[0]);
+//          // 发送数据
+//          char txData[] = "Hello, UART!\r\n";
+//          HAL_UART_Transmit(&huart2, (uint8_t *)txData, strlen(txData), HAL_MAX_DELAY);
+////              if(OpenMV_Rx_Data2[2]<20)
+////              {
+////                  stop_flag=0;
+////                  if(OpenMV_Rx_Data2[1]<3)chasu_flag=0;
+////              }
+//
+//          OpenMV_Rx_Data_Analysis_State2 = 0;
+//          memset(OpenMV_Rx_Data2, 0, sizeof(OpenMV_Rx_Data2));
+//      }
+//      else OpenMV_Check_Data_Task2();
+//      Forward(setspeed*stop_flag+chasu*chasu_flag,setspeed*stop_flag-chasu*chasu_flag);//输入左轮 右轮的�?�度
+      Forward(chasu,-chasu);//输入左轮 右轮的�?�度
+//      Forward(500,500);//输入左轮 右轮的�?�度
+
+//      __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, duoji_1);// Left
+//
+//
+//
+//      __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, duoji_2);//右边=�?
+////        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, 250);//右边=�?
+//
+//      __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, duoji_3);//Carry-release
+      HAL_Delay(100);
+//      printf("duoji1:%d,duoji2:%d,duoji3:%d\r\n",duoji_1, duoji_2,duoji_3);
   }
   /* USER CODE END 3 */
 }
@@ -176,36 +279,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-    if (huart->Instance == USART2)
-    {
-        // 假设您的串口接收缓冲区为rx_buffer，缓冲区大小为buffer_size
-        static uint8_t rx_buffer[BUFFER_SIZE];
-        static uint32_t rx_index = 0;
-
-        // 将接收到的数据存入缓冲区
-        rx_buffer[rx_index++] = huart->Instance->DR;
-
-        // 判断是否接收到完整的�?行数�?
-        if (rx_index >= 3 && rx_buffer[rx_index - 1] == '\n' && rx_buffer[rx_index - 2] == '\r')
-        {
-            // 解析接收到的数据
-
-            sscanf((char*)rx_buffer, "%d,%d", &offset_x, &offset_y);
-
-            // 在这里处理接收到的数据，例如打印到串口或者执行其他操�?
-
-            // 清空接收缓冲区和索引，准备接收下�?条数�?
-            memset(rx_buffer, 0, BUFFER_SIZE);
-            rx_index = 0;
-        }
-
-        // 启动下一次接�?
-        HAL_UART_Receive_IT(huart, &rx_buffer[rx_index], 1);
-    }
-}
-
 
 /* USER CODE END 4 */
 

@@ -2,58 +2,73 @@
 // Created by Monee on 2024/3/18.
 //
 #include "Motor.h"
+//duoji2:前伸舵机。duoji3:抓取舵机
+//前伸未抓取状态duoji2:210,duoji3:250
+//前伸抓取状态duoji2:210,duoji3:170
+//后缩状态duoji2:70
+//机械臂初始化
+int step_shen = 70;
+int step_zhua =  250;
+void Arm_Init(void){
+    //初始
+    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, step_shen);//后
+    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, step_zhua);//松
+    HAL_Delay(1000);
 
+    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 160);// 下
+    HAL_Delay(1000);
+
+}
+//机械臂前伸
+void Arm_Shen(void){
+
+    while(step_shen<210)
+    {
+        step_shen +=5;
+        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, step_shen);//后
+        HAL_Delay(20);
+    }
+
+}
+void Arm_Suo(void){
+
+    while(step_shen>70)
+    {
+        step_shen -=5;
+        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, step_shen);//后
+        HAL_Delay(20);
+    }
+
+}
+//夹取
+void Arm_Jia(void){
+    while(step_zhua>180)
+    {
+        step_zhua -=5;
+        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, step_zhua);//松
+        HAL_Delay(10);
+    }
+}
+
+//松爪子
+void Arm_Song(void){
+
+    while(step_zhua<245)
+    {
+        step_zhua +=5;
+        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, step_zhua);//松
+        HAL_Delay(10);
+    }
+
+}
 /**************************************************
 函数名称：Motor_Init(void)
 函数功能：电机相关引脚初始化
 入口参数：无
 返回参数：无
 ***************************************************/
-void Motor_Init(void)
-{
 
-}
-
-//void Set_Pwm(int motor_a,int motor_b,int motor_c,int motor_d,int servo)
-//{
-//    //Forward and reverse control of motor
-//    //电机正反转控制
-//    if(motor_a<0)		AIN2=0,		AIN1=1;
-//    else				    AIN2=1,		AIN1=0;
-//    //Motor speed control
-//    //电机转速控制
-//    PWMA=abs(motor_a);
-//
-//    //Forward and reverse control of motor
-//    //电机正反转控制
-//    if(motor_b<0)		BIN2=1,		BIN1=0;
-//    else 	          BIN2=0,		BIN1=1;
-//    //Motor speed control
-//    //电机转速控制
-//    PWMB=abs(motor_b);
-//
-//    //Forward and reverse control of motor
-//    //电机正反转控制
-//    if(motor_c>0)		CIN2=0,		CIN1=1;
-//    else 	          CIN2=1,		CIN1=0;
-//    //Motor speed control
-//    //电机转速控制
-//    PWMC=abs(motor_c);
-//
-//    //Forward and reverse control of motor
-//    //电机正反转控制
-//    if(motor_d>0)		DIN2=0,		DIN1=1;
-//    else 	          DIN2=1,		DIN1=0;
-//    //Motor speed control
-//    //电机转速控制
-//    PWMD=abs(motor_d);
-//
-//    //Servo control
-//    //舵机控制
-//    Servo_PWM =servo;
-//}
-
-void Front_Left(uint8_t state){
+void Back_Left(uint8_t state){
     if(state == 1){
         HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9,GPIO_PIN_SET);
         HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8,GPIO_PIN_RESET);
@@ -77,7 +92,7 @@ void Front_Right(uint8_t state){
     }
 }
 
-void Back_Left(uint8_t state){
+void Back_Right(uint8_t state){
     if(state == 1){
         HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5,GPIO_PIN_SET);
         HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4,GPIO_PIN_RESET);
@@ -89,7 +104,7 @@ void Back_Left(uint8_t state){
     }
 }
 
-void Back_Right(uint8_t state){
+void Front_Left(uint8_t state){
     if(state == 1){
         HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3,GPIO_PIN_SET);
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15,GPIO_PIN_RESET);
@@ -106,13 +121,13 @@ void Back_Right(uint8_t state){
 入口参数：speed  0-500
 返回参数：无
 ***************************************************/
-void Forward(uint16_t speed)
+void Forward(uint16_t L_speed ,uint16_t R_speed)
 {
 
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 500 - speed);//R_A:右下
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, 500 - speed);//R_B:左下
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, 500 - speed);//L_A:右上
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, 500 - speed);//L_B:左上
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, R_speed);//R_A:右下
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, L_speed);//R_B:左下
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, L_speed);//L_A:右上
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, R_speed);//L_B:左上
 
     Front_Left(1);
     Front_Right(1);
@@ -128,10 +143,10 @@ void Forward(uint16_t speed)
 ***************************************************/
 void Backward(uint16_t speed)
 {
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, speed);//R_A:右下
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, 500 - speed);//R_B:左下
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, 500 - speed);//L_A:右上
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, speed);//L_B:左上
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, speed);//R_A:右下
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, speed);//R_B:左下
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, speed);//L_A:右上
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, speed);//L_B:左上
 
     Front_Left(0);
     Front_Right(0);
@@ -149,10 +164,10 @@ void Backward(uint16_t speed)
 ***************************************************/
 void Left_Turn(uint16_t speed)
 {
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 500 - speed);//R_A:右下
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, 500 - speed);//R_B:左下
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, speed);//L_A:右上
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, speed);//L_B:左上
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, speed);//R_A:右下
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, speed);//R_B:左下
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, speed);//L_A:右上
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, speed);//L_B:左上
 
     Front_Left(0);
     Front_Right(1);
@@ -170,10 +185,10 @@ void Left_Turn(uint16_t speed)
 ***************************************************/
 void Right_Turn(uint16_t speed)
 {
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, speed);//R_A:右下
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, speed);//R_B:左下
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, 500-speed);//L_A:右上
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, 500-speed);//L_B:左上
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, speed);//R_A:右下
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, speed);//R_B:左下
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, speed);//L_A:右上
+    __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, speed);//L_B:左上
 
     Front_Left(1);
     Front_Right(0);
@@ -191,23 +206,23 @@ void Right_Turn(uint16_t speed)
 返回参数：无
 *********************************************************&&*************/
 void Translate_Move(char *Dir, uint16_t speed) {
-    if(strcmp(Dir, "Left") == 0) {
-        // 左移动的逻辑
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, speed);
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, speed);
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, speed);
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, speed);
+    if(strcmp(Dir, "Right") == 0) {
+        // 右边移动的逻辑
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, speed);
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, speed);
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, speed);
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, speed);
         Front_Left(1);
         Front_Right(0);
         Back_Left(0);
         Back_Right(1);
     }
-    else if(strcmp(Dir, "Right") == 0) {
-        // 右移动的逻辑
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 500 - speed);
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, 500 - speed);
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, 500 - speed);
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_4, 500 - speed);
+    else if(strcmp(Dir, "Left") == 0) {
+        // 左移动的逻辑
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, speed);
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, speed);
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, speed);
+        __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, speed);
         Front_Left(0);
         Front_Right(1);
         Back_Left(1);
@@ -228,10 +243,11 @@ void Translate_Move(char *Dir, uint16_t speed) {
 }
 
 // 更新PID控制器状态
-int PID_Update(PIDController *pid, int dt) {
+int PID_Update(PIDController *pid, int dt,int err) {
     // 计算误差
-    int error = pid->target_position - pid->current_position;
+//    int error = pid->target_position - pid->current_position;
 
+    int error = err;
     // 计算积分项
     pid->integral += error * dt;
 
@@ -260,3 +276,124 @@ void PIDController_Init(int member1, int member2, PIDController *PID_x, PIDContr
     PID_y->prev_error = 0;                // 初始化前一次误差
     PID_y->integral = 0;                  // 初始化积分项
 }
+
+
+void Servo_1_SetAngle(uint8_t angle)//   input 0~180
+{
+    // 将角度转换为对应的脉冲宽度
+    uint16_t pulse_width = 500 + (angle * 11); // 将角度映射到500µs到2500µs范围内
+
+    // 设置PWM脉冲宽度
+        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pulse_width);
+}
+
+void Servo_2_SetAngle(uint8_t angle)
+{
+    // 将角度转换为对应的脉冲宽度
+    uint16_t pulse_width = 500 + (angle * 11); // 将角度映射到500µs到2500µs范围内
+
+    // 设置PWM脉冲宽度
+    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, pulse_width);
+}
+
+
+void Servo_3_SetAngle(uint8_t angle)
+{
+    // 将角度转换为对应的脉冲宽度
+    uint16_t pulse_width = 500 + (angle * 11); // 将角度映射到500µs到2500µs范围内
+
+    // 设置PWM脉冲宽度
+    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, pulse_width);
+}
+
+
+void Steer_Angle(uint8_t angle)
+{
+
+}
+
+#define SERVO_LEFT   600
+#define SERVO_RIGHT  600
+#define SERVO_CARRY  600
+
+void Steer_Init(void)
+{
+
+    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
+
+    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);
+
+    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3);
+
+
+    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,SERVO_LEFT); //相当于一个周期内（20ms）有0.5ms高脉冲
+
+    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,SERVO_RIGHT); //相当于一个周期内（20ms）有0.5ms高脉冲
+
+    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,SERVO_CARRY); //相当于一个周期内（20ms）有0.5ms高脉冲
+
+
+
+}
+
+
+
+
+void Steer_Control(uint8_t forword,uint8_t height,uint8_t carry){
+
+//    //角度转化---->PWM值
+//    uint8_t forward_angle = forword * kp;
+//    uint8_t height_angle = height * kp;
+//    uint8_t carry_angle = carry * kp;
+//
+//
+
+    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,SERVO_LEFT); //相当于一个周期内（20ms）有0.5ms高脉冲
+
+    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,SERVO_RIGHT); //相当于一个周期内（20ms）有0.5ms高脉冲
+
+    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,SERVO_CARRY); //相当于一个周期内（20ms）有0.5ms高脉冲
+
+
+}
+//
+//void  Extend_STEER(){
+//
+//    //机械臂前伸
+//
+//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
+//
+//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
+//
+//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
+//
+//
+//}
+//
+//void  Retract_STEER(){
+//
+////机械臂后缩
+//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
+//
+//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
+//
+//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
+//
+//
+//}
+//
+//void  Grasp_STEER(){
+//
+////    机械臂抓取
+//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
+//
+//
+//}
+//
+//void  Release_STEER(){
+//
+//      //    机械臂松开
+//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
+//
+//
+//}

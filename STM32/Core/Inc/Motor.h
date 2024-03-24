@@ -18,12 +18,16 @@ void Front_Left(uint8_t state);
 void Front_Right(uint8_t state);
 void Back_Left(uint8_t state);
 void Back_Right(uint8_t state);
-void Forward(uint16_t speed);
+void Forward(uint16_t L_speed ,uint16_t R_speed);
 void Backward(uint16_t speed);
 void Left_Turn(uint16_t speed);
 void Right_Turn(uint16_t speed);
 void Translate_Move(char *Dir, uint16_t speed);
-
+void Arm_Init(void);
+void Arm_Shen(void);
+void Arm_Suo(void);
+void Arm_Jia(void);
+void Arm_Song(void);
 // PID 控制器状态
 typedef struct {
     int target_position;    // 目标位置
@@ -33,6 +37,13 @@ typedef struct {
 } PIDController;
 
 
-int PID_Update(PIDController *pid, int dt);
+int PID_Update(PIDController *pid, int dt,int err);
 void PIDController_Init(int member1, int member2, PIDController *PID_x, PIDController *PID_y);
+
+void Servo_1_SetAngle(uint8_t angle);//   input 0~180
+void Servo_2_SetAngle(uint8_t angle);//   input 0~180
+void Servo_3_SetAngle(uint8_t angle);//   input 0~180
+void Steer_Init(void);
+
+
 #endif //STM32_MOTOR_H
