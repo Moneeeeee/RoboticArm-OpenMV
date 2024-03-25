@@ -155,7 +155,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-      Translate_Move("Left",Para_Out);
+//      Translate_Move("Left",Para_Out);
 
       if (OpenMV_Rx_Data_Analysis_State)
       {
