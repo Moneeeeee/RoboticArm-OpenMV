@@ -37,13 +37,8 @@ typedef struct {
 } PIDController;
 
 
-int PID_Update(PIDController *pid, int dt,int err);
-void PIDController_Init(int member1, int member2, PIDController *PID_x, PIDController *PID_y);
-
-void Servo_1_SetAngle(uint8_t angle);//   input 0~180
-void Servo_2_SetAngle(uint8_t angle);//   input 0~180
-void Servo_3_SetAngle(uint8_t angle);//   input 0~180
-void Steer_Init(void);
+int PID_Update(PIDController *pid,int err) ;
+void PIDController_Init(int member1, PIDController *PID_x) ;
 
 
 #endif //STM32_MOTOR_H

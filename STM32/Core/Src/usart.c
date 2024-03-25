@@ -22,23 +22,16 @@
 
 /* USER CODE BEGIN 0 */
 #define OPENMV_Uart_RX_LENGTH_MAX 9
-#define OPENMV_Uart_RX_LENGTH_MAX2 9
-//uint8_t OpenMV_Uart_Rx_Buffer[OPENMV_Uart_RX_LENGTH_MAX]={0};
 static uint8_t OpenMV_Uart_Rx_Index = 0;                        // UART接收计数索引
-static uint8_t OpenMV_Uart_Rx_Index2 = 0;                        // UART接收计数索引
 static uint8_t OpenMV_Uart_Rx_Temp  = 0;                         // UART中断接收缓存
 uint8_t OpenMV_Uart_Rx_Buffer[OPENMV_Uart_RX_LENGTH_MAX] = {0}; // UART接收缓存
-uint8_t OpenMV_Uart_Rx_Buffer2[OPENMV_Uart_RX_LENGTH_MAX2] = {0}; // UART接收缓存
-/*********   应用�???   *********/
+/*********   应用�????   *********/
 short OpenMV_Rx_Data[OPENMV_Uart_RX_LENGTH_MAX-3] = {0};             // 接收OpenMV数据
-short OpenMV_Rx_Data2[OPENMV_Uart_RX_LENGTH_MAX2-3] = {0};             // 接收OpenMV数据
 uint8_t OpenMV_Rx_Data_Analysis_State = 0; // OpenMV数据解析状�??
-uint8_t OpenMV_Rx_Data_Analysis_State2 = 0; // OpenMV数据解析状�??
 int count_flag = 0;
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart1;
-UART_HandleTypeDef huart2;
 
 /* USART1 init function */
 
@@ -67,35 +60,6 @@ void MX_USART1_UART_Init(void)
   /* USER CODE BEGIN USART1_Init 2 */
 
   /* USER CODE END USART1_Init 2 */
-
-}
-/* USART2 init function */
-
-void MX_USART2_UART_Init(void)
-{
-
-  /* USER CODE BEGIN USART2_Init 0 */
-
-  /* USER CODE END USART2_Init 0 */
-
-  /* USER CODE BEGIN USART2_Init 1 */
-
-  /* USER CODE END USART2_Init 1 */
-  huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
-  huart2.Init.WordLength = UART_WORDLENGTH_8B;
-  huart2.Init.StopBits = UART_STOPBITS_1;
-  huart2.Init.Parity = UART_PARITY_NONE;
-  huart2.Init.Mode = UART_MODE_TX_RX;
-  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USART2_Init 2 */
-
-  /* USER CODE END USART2_Init 2 */
 
 }
 
@@ -133,36 +97,6 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
 
   /* USER CODE END USART1_MspInit 1 */
   }
-  else if(uartHandle->Instance==USART2)
-  {
-  /* USER CODE BEGIN USART2_MspInit 0 */
-
-  /* USER CODE END USART2_MspInit 0 */
-    /* USART2 clock enable */
-    __HAL_RCC_USART2_CLK_ENABLE();
-
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-    /**USART2 GPIO Configuration
-    PA2     ------> USART2_TX
-    PA3     ------> USART2_RX
-    */
-    GPIO_InitStruct.Pin = GPIO_PIN_2;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = GPIO_PIN_3;
-    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-    /* USART2 interrupt Init */
-    HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(USART2_IRQn);
-  /* USER CODE BEGIN USART2_MspInit 1 */
-
-  /* USER CODE END USART2_MspInit 1 */
-  }
 }
 
 void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
@@ -188,26 +122,6 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
   /* USER CODE END USART1_MspDeInit 1 */
   }
-  else if(uartHandle->Instance==USART2)
-  {
-  /* USER CODE BEGIN USART2_MspDeInit 0 */
-
-  /* USER CODE END USART2_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_USART2_CLK_DISABLE();
-
-    /**USART2 GPIO Configuration
-    PA2     ------> USART2_TX
-    PA3     ------> USART2_RX
-    */
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_2|GPIO_PIN_3);
-
-    /* USART2 interrupt Deinit */
-    HAL_NVIC_DisableIRQ(USART2_IRQn);
-  /* USER CODE BEGIN USART2_MspDeInit 1 */
-
-  /* USER CODE END USART2_MspDeInit 1 */
-  }
 }
 
 /* USER CODE BEGIN 1 */
@@ -215,7 +129,7 @@ void OpenMV_Check_Data_Task(void)
 {
     static int flag;
     flag = 0;
-    if (!OpenMV_Uart_Rx_Index) // 没有数据 �?�?
+    if (!OpenMV_Uart_Rx_Index) // 没有数据 �??�??
     {
         OpenMV_Uart_Rx_Index = 0;
         return;
@@ -223,18 +137,18 @@ void OpenMV_Check_Data_Task(void)
 
 
     // 接收长度是否达到
-    if (OpenMV_Uart_Rx_Index < 9) // 按需修改 �?7：两个short�? 5：一个short；依此类推）
+    if (OpenMV_Uart_Rx_Index < 9) // 按需修改 �??7：两个short�?? 5：一个short；依此类推）
     {
         OpenMV_Uart_Rx_Index = 0;
         return;
     }
 
-    // �?查格式是否正�?
-    if ((OpenMV_Uart_Rx_Buffer[0] != 0x5b) && (OpenMV_Uart_Rx_Buffer[1] != 0x38) &&// 帧头(�?个字�?)
+    // �??查格式是否正�??
+    if ((OpenMV_Uart_Rx_Buffer[0] != 0x5b) && (OpenMV_Uart_Rx_Buffer[1] != 0x38) &&// 帧头(�??个字�??)
         (OpenMV_Uart_Rx_Buffer[OpenMV_Uart_Rx_Index - 1] != 0xb5))                  // 帧尾
     {
         HAL_Delay(100);
-        // 清零接收缓冲 为下�?次接收准�?
+        // 清零接收缓冲 为下�??次接收准�??
         OpenMV_Uart_Rx_Index = 0;
         return;
     }
@@ -242,9 +156,9 @@ void OpenMV_Check_Data_Task(void)
         {
 
     //        OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[i+2];
-            OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 1] << 8; // �?8�?
+            OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 1] << 8; // �??8�??
 //            printf("%d\r\n",OpenMV_Rx_Data[i]);
-            OpenMV_Rx_Data[i] |= OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 0];     // �?8�?
+            OpenMV_Rx_Data[i] |= OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 0];     // �??8�??
 
         }
 
@@ -252,57 +166,6 @@ void OpenMV_Check_Data_Task(void)
     OpenMV_Uart_Rx_Index = 0;
 }
 
-
-void OpenMV_Check_Data_Task2(void)
-{
-
-
-
-    char buffer[20]; // 用于存储转换后的字符串
-    sprintf(buffer, "%d\r\n", OpenMV_Uart_Rx_Index2); // 将整数转换为字符串
-    HAL_UART_Transmit(&huart2, (uint8_t *)OpenMV_Uart_Rx_Buffer2, strlen(OpenMV_Uart_Rx_Buffer2), HAL_MAX_DELAY);
-
-    uint16_t i;
-    static int flag;
-    flag = 0;
-    if (!OpenMV_Uart_Rx_Index2) // 没有数据 �?�?
-    {
-        OpenMV_Uart_Rx_Index2 = 0;
-        return;
-    }
-
-
-    // 接收长度是否达到
-    if (OpenMV_Uart_Rx_Index2 < 9) // 按需修改 �?7：两个short�? 5：一个short；依此类推）
-    {
-        OpenMV_Uart_Rx_Index2 = 0;
-        return;
-    }
-
-    // �?查格式是否正�?
-    if ((OpenMV_Uart_Rx_Buffer2[0] != 0x5b) && (OpenMV_Uart_Rx_Buffer2[1] != 0x38) &&// 帧头(�?个字�?)
-        (OpenMV_Uart_Rx_Buffer2[OpenMV_Uart_Rx_Index2 - 1] != 0xb5))                  // 帧尾
-    {
-
-        HAL_Delay(100);
-        // 清零接收缓冲 为下�?次接收准�?
-        OpenMV_Uart_Rx_Index2 = 0;
-        return;
-    }
-    char txData[] = "receive success!\r\n";
-    HAL_UART_Transmit(&huart2, (uint8_t *)txData, strlen(txData), HAL_MAX_DELAY);
-    for (i = 0; i < (OpenMV_Uart_Rx_Index2 - 3); ++i)
-    {
-//          OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + i];
-        OpenMV_Rx_Data2[i] = OpenMV_Uart_Rx_Buffer2[2 + (i << 1) + 1] << 8; // �?8�?
-        OpenMV_Rx_Data2[i] |= OpenMV_Uart_Rx_Buffer2[2 + (i << 1) + 0];     // �?8�?
-//              OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + i  + 0] << 8; // �?8�?
-//        OpenMV_Rx_Data[i] |= OpenMV_Uart_Rx_Buffer[2 +i + 1];     // �?8�?
-//          LED_RED_On();
-    }
-    OpenMV_Rx_Data_Analysis_State2 = 1; // 解析状�?�置1
-    OpenMV_Uart_Rx_Index2 = 0;
-}
 extern int chasu;
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 
@@ -312,9 +175,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
         if (OpenMV_Uart_Rx_Index < OPENMV_Uart_RX_LENGTH_MAX) // 接收缓冲是否溢出
         {
             OpenMV_Uart_Rx_Buffer[OpenMV_Uart_Rx_Index] = huart->Instance->DR;; // 放入缓存
-            OpenMV_Uart_Rx_Index++;                                            // 索引�??1
+            OpenMV_Uart_Rx_Index++;                                            // 索引�???1
         }
-        HAL_UART_Receive_IT(&huart1, OpenMV_Uart_Rx_Buffer + OpenMV_Uart_Rx_Index, 1); // 继续接收下一个字�??
+        HAL_UART_Receive_IT(&huart1, OpenMV_Uart_Rx_Buffer + OpenMV_Uart_Rx_Index, 1); // 继续接收下一个字�???
 
     }
 //    if (huart == &huart1)//OPENMV
@@ -326,10 +189,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 ////            HAL_UART_Transmit(&huart2, (uint8_t *)txData, strlen(txData), HAL_MAX_DELAY);
 //            OpenMV_Uart_Rx_Buffer2[OpenMV_Uart_Rx_Index2] = huart->Instance->DR;; // 放入缓存
 //            chasu = (int)OpenMV_Uart_Rx_Buffer2[OpenMV_Uart_Rx_Index2];
-//            OpenMV_Uart_Rx_Index2++;                                            // 索引�??1
+//            OpenMV_Uart_Rx_Index2++;                                            // 索引�???1
 ////            printf("%d\r\n",OpenMV_Uart_Rx_Index2);
 //        }
-//        HAL_UART_Receive_IT(&huart1, OpenMV_Uart_Rx_Buffer2 + OpenMV_Uart_Rx_Index2, 1); // 继续接收下一个字�??
+//        HAL_UART_Receive_IT(&huart1, OpenMV_Uart_Rx_Buffer2 + OpenMV_Uart_Rx_Index2, 1); // 继续接收下一个字�???
 //
 //    }
 //    else if (huart == &huart1) {

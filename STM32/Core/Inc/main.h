@@ -42,10 +42,10 @@ extern "C" {
 
 
 
-// PID 控制器参�??
-#define KP 1   // 比例系数
-#define KI 0   // 积分系数
-#define KD 0   // 微分系数
+// PID 控制器参�???
+#define KP 2   // 比例系数
+#define KI 1   // 积分系数
+#define KD 1   // 微分系数
 
 /* USER CODE END Includes */
 
@@ -56,8 +56,7 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-extern int offset_x;
-extern int offset_y;
+
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -79,6 +78,10 @@ void Error_Handler(void);
 #define SERVO_1_GPIO_Port GPIOA
 #define SERVO_2_Pin GPIO_PIN_1
 #define SERVO_2_GPIO_Port GPIOA
+#define Trak_L_Pin GPIO_PIN_2
+#define Trak_L_GPIO_Port GPIOA
+#define Trak_R_Pin GPIO_PIN_3
+#define Trak_R_GPIO_Port GPIOA
 #define SERVO_3_Pin GPIO_PIN_6
 #define SERVO_3_GPIO_Port GPIOA
 #define SERVO_4_Pin GPIO_PIN_7
