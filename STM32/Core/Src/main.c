@@ -189,6 +189,7 @@ int main(void)
                 //执行抓取操作
             }
 
+
             //第3位为元素识别标志
             //OpenMV_Rx_Data[3]
             Stop_Flag = OpenMV_Rx_Data[2];
