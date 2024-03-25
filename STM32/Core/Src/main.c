@@ -74,9 +74,7 @@ extern uint8_t OpenMV_Rx_Data_Analysis_State;
 extern short OpenMV_Rx_Data[6];             // 接收OpenMV数据
 extern uint8_t OpenMV_Rx_Data_Analysis_State2;
 extern short OpenMV_Rx_Data2[6];             // 接收OpenMV数据
-int duoji_1=150;
-int duoji_2=180;
-int duoji_3=230;
+
 int xunji_status=1;
 int setspeed=0;
 int chasu=0;
@@ -152,14 +150,16 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+//      printf("%d\r\n",OpenMV_Rx_Data[0]);
+//      printf("%s\r\n",OpenMV_Uart_Rx_Buffer);
+
       if (OpenMV_Rx_Data_Analysis_State)
       {
 
           OpenMV_Rx_Data_Analysis_State = 0;
 
-          //printf("%d,%d,%d\r\n",duoji_1, duoji_2,duoji_3);
 
-          chasu = PID_Update(&PID_x,dt,OpenMV_Rx_Data[0]);
+//          chasu = PID_Update(&PID_x,dt,OpenMV_Rx_Data[0]);
           //调整舵机的值
 //          duoji_1 += -(OpenMV_Rx_Data[0]==1)*OpenMV_Rx_Data[1]+(OpenMV_Rx_Data[0]==0)*OpenMV_Rx_Data[1];
 //          duoji_2 += -(OpenMV_Rx_Data[2]==1)*OpenMV_Rx_Data[3]+(OpenMV_Rx_Data[2]==0)*OpenMV_Rx_Data[3];
@@ -169,7 +169,7 @@ int main(void)
             else if(OpenMV_Rx_Data[0]==2)Arm_Suo();
             else if(OpenMV_Rx_Data[0]==3)Arm_Jia();
             else if(OpenMV_Rx_Data[0]==4)Arm_Song();
-          printf("%d\r\n",chasu);
+          printf("%d\r\n",OpenMV_Rx_Data[0]);
           memset(OpenMV_Rx_Data, 0, sizeof(OpenMV_Rx_Data));
       }
       else OpenMV_Check_Data_Task();
@@ -183,26 +183,25 @@ int main(void)
       {
 
       }
-      if (OpenMV_Rx_Data_Analysis_State2)
-      {
-
-          //下面是对无线串口采集到的数据进行处理的函数，每次接收到一次有效数据之后处理一�??
-
-          chasu = PID_Update(&PID_x,dt,OpenMV_Rx_Data2[0]);
-          // 发送数据
-          char txData[] = "Hello, UART!\r\n";
-          HAL_UART_Transmit(&huart2, (uint8_t *)txData, strlen(txData), HAL_MAX_DELAY);
-//              if(OpenMV_Rx_Data2[2]<20)
-//              {
-//                  stop_flag=0;
-//                  if(OpenMV_Rx_Data2[1]<3)chasu_flag=0;
-//              }
-
-          OpenMV_Rx_Data_Analysis_State2 = 0;
-          memset(OpenMV_Rx_Data2, 0, sizeof(OpenMV_Rx_Data2));
-      }
-      else OpenMV_Check_Data_Task2();
-      Forward(setspeed*stop_flag+chasu*chasu_flag,setspeed*stop_flag-chasu*chasu_flag);//输入左轮 右轮的�?�度
+//      if (OpenMV_Rx_Data_Analysis_State2)
+//      {
+//
+//          //下面是对无线串口采集到的数据进行处理的函数，每次接收到一次有效数据之后处理一�??
+//          chasu = PID_Update(&PID_x,dt,OpenMV_Rx_Data2[0]);
+//          // 发送数据
+//          char txData[] = "Hello, UART!\r\n";
+//          HAL_UART_Transmit(&huart2, (uint8_t *)txData, strlen(txData), HAL_MAX_DELAY);
+////              if(OpenMV_Rx_Data2[2]<20)
+////              {
+////                  stop_flag=0;
+////                  if(OpenMV_Rx_Data2[1]<3)chasu_flag=0;
+////              }
+//
+//          OpenMV_Rx_Data_Analysis_State2 = 0;
+//          memset(OpenMV_Rx_Data2, 0, sizeof(OpenMV_Rx_Data2));
+//      }
+//      else OpenMV_Check_Data_Task2();
+//      Forward(setspeed*stop_flag+chasu*chasu_flag,setspeed*stop_flag-chasu*chasu_flag);//输入左轮 右轮的�?�度
 //      Forward(chasu,-chasu);//输入左轮 右轮的�?�度
 //      Forward(500,500);//输入左轮 右轮的�?�度
 

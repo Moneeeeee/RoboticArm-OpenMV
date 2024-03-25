@@ -213,7 +213,6 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 /* USER CODE BEGIN 1 */
 void OpenMV_Check_Data_Task(void)
 {
-//    uint16_t i;
     static int flag;
     flag = 0;
     if (!OpenMV_Uart_Rx_Index) // 没有数据 �?�?
@@ -239,21 +238,16 @@ void OpenMV_Check_Data_Task(void)
         OpenMV_Uart_Rx_Index = 0;
         return;
     }
-    for(int i=0;i<OPENMV_Uart_RX_LENGTH_MAX-3;i++)
-    {
-//        OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[i+2];
-        OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 1] << 8; // �?8�?
-        OpenMV_Rx_Data[i] |= OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 0];     // �?8�?
-    }
-//    for (int i = 0; i < (OpenMV_Uart_Rx_Index - 3); i++)
-//    {
-//          OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + i];
-//        OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 1] << 8; // �?8�?
-//        OpenMV_Rx_Data[i] |= OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 0];     // �?8�?
-//              OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + i  + 0] << 8; // �?8�?
-//        OpenMV_Rx_Data[i] |= OpenMV_Uart_Rx_Buffer[2 +i + 1];     // �?8�?
-//          LED_RED_On();
-//    }
+        for(int i=0;i<OPENMV_Uart_RX_LENGTH_MAX-3;i++)
+        {
+
+    //        OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[i+2];
+            OpenMV_Rx_Data[i] = OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 1] << 8; // �?8�?
+//            printf("%d\r\n",OpenMV_Rx_Data[i]);
+            OpenMV_Rx_Data[i] |= OpenMV_Uart_Rx_Buffer[2 + (i << 1) + 0];     // �?8�?
+
+        }
+
     OpenMV_Rx_Data_Analysis_State = 1; // 解析状�?�置1
     OpenMV_Uart_Rx_Index = 0;
 }
@@ -266,8 +260,8 @@ void OpenMV_Check_Data_Task2(void)
 
     char buffer[20]; // 用于存储转换后的字符串
     sprintf(buffer, "%d\r\n", OpenMV_Uart_Rx_Index2); // 将整数转换为字符串
-
     HAL_UART_Transmit(&huart2, (uint8_t *)OpenMV_Uart_Rx_Buffer2, strlen(OpenMV_Uart_Rx_Buffer2), HAL_MAX_DELAY);
+
     uint16_t i;
     static int flag;
     flag = 0;
