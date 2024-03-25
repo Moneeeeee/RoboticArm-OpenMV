@@ -52,36 +52,37 @@
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void ChangeTimerPrescaler(TIM_HandleTypeDef *htim, uint32_t newPrescaler) {
-    // 停止定时�??
+    // 停止定时�???
     HAL_TIM_Base_Stop(htim);
 
-    // 修改预分频系�??
+    // 修改预分频系�???
     htim->Init.Prescaler = newPrescaler;
 
     // 重新初始化定时器
     HAL_TIM_Base_Init(htim);
 
-    // 重新启动定时�??
+    // 重新启动定时�???
     HAL_TIM_Base_Start(htim);
 }
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-int offset_x = 0;
-int offset_y = 0;
+#define Target_Speed 500
+
 extern uint8_t OpenMV_Rx_Data_Analysis_State;
 extern short OpenMV_Rx_Data[6];             // 接收OpenMV数据
-extern uint8_t OpenMV_Rx_Data_Analysis_State2;
-extern short OpenMV_Rx_Data2[6];             // 接收OpenMV数据
-int duoji_1=150;
-int duoji_2=180;
-int duoji_3=230;
-int xunji_status=1;
-int setspeed=0;
-int chasu=0;
-int chasu_flag=1;
-int stop_flag=1;
+
+int Length_Flag = 12;
+int Turn_Out = 0;
+int Length = 0;
+int err_x = 0;
+int Deviation = 0;
+int Para_Out = 0;
+int Paralell_Flag = 0;//巡线后�?�抓取前之间的平移窗�?
+int State = 1;//分为抓取模式�?0）和循迹模式�?1�?
+int Turn_Flag=1;//是否给差速�?�巡线时启用
+int Stop_Flag=1;//巡线结束停车、放下物体停�?
 /* USER CODE END 0 */
 
 /**
@@ -93,9 +94,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
   RetargetInit(&huart1);
 
-  uint8_t rx_buffer[BUFFER_SIZE];  // 声明接收缓冲�?????????????
-    uint8_t rx_buffer2[BUFFER_SIZE];  // 声明接收缓冲�?????????????
-  uint32_t rx_index = 0;  // 声明接收缓冲区索�?????????????
+  uint8_t rx_buffer[BUFFER_SIZE];  // 声明接收缓冲�??????????????
 
   /* USER CODE END 1 */
 
@@ -119,29 +118,33 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM3_Init();
   MX_USART1_UART_Init();
-  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_UART_Receive_IT(&huart1, (uint8_t *)rx_buffer, 1);
-//  HAL_UART_Receive_IT(&huart2, (uint8_t *)rx_buffer2, 1);
+
+//  //轮子PWM初始�?
     HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3);
     HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4);
 
-
+    //舵机PWM初始�?
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
-//    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3);
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_4);
-
-
+    //机械臂初始收�?
     Arm_Init();
 
+    //PID结构体定义（仅对巡线差�?�）
     PIDController PID_x;
-    PIDController PID_y;
-    PIDController_Init(offset_x, offset_y, &PID_x, &PID_y);
-    // 设置时间步长（假设时间步长为0.1秒，�?????????????10000微秒�?????????????
-    int dt = 10000;
+    PIDController_Init(err_x,&PID_x);
+
+    PIDController PID_d;
+    PIDController_Init(Deviation,&PID_d);
+
+//    //没有必要？没有必�?
+//        // 设置时间步长（假设时间步长为100us�?
+//        int dt = 100;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -152,60 +155,120 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+      Translate_Move("Left",Para_Out);
+
       if (OpenMV_Rx_Data_Analysis_State)
       {
-
           OpenMV_Rx_Data_Analysis_State = 0;
-
-          //printf("%d,%d,%d\r\n",duoji_1, duoji_2,duoji_3);
-
-          chasu = PID_Update(&PID_x,dt,OpenMV_Rx_Data[0]);
-          //调整舵机的值
+          //�?共六位�?�第�?位为舵机控制、第二位为x偏差、第三位为距离�?�第四位为元素识别标志位、第五位为中线斜率�?�第六位0
+          //调整舵机的�??
 //          duoji_1 += -(OpenMV_Rx_Data[0]==1)*OpenMV_Rx_Data[1]+(OpenMV_Rx_Data[0]==0)*OpenMV_Rx_Data[1];
 //          duoji_2 += -(OpenMV_Rx_Data[2]==1)*OpenMV_Rx_Data[3]+(OpenMV_Rx_Data[2]==0)*OpenMV_Rx_Data[3];
 //          duoji_3 += -(OpenMV_Rx_Data[4]==1)*OpenMV_Rx_Data[5]+(OpenMV_Rx_Data[4]==0)*OpenMV_Rx_Data[5];
-            //机械臂动作
-            if(OpenMV_Rx_Data[0]==1)Arm_Shen();
-            else if(OpenMV_Rx_Data[0]==2)Arm_Suo();
-            else if(OpenMV_Rx_Data[0]==3)Arm_Jia();
-            else if(OpenMV_Rx_Data[0]==4)Arm_Song();
-          printf("%d\r\n",chasu);
+
+            //第一位为舵机控制
+            //OpenMV_Rx_Data[0]
+//            if(OpenMV_Rx_Data[0]==1)Arm_Shen();
+//            else if(OpenMV_Rx_Data[0]==2)Arm_Suo();
+//            else if(OpenMV_Rx_Data[0]==3)Arm_Jia();
+//            else if(OpenMV_Rx_Data[0]==4)Arm_Song();
+
+            //第1位为x偏差
+            //OpenMV_Rx_Data[1]
+            err_x = OpenMV_Rx_Data[0];
+            Turn_Out = PID_Update(&PID_x,err_x);
+//            printf("%d,%d\r\n",OpenMV_Rx_Data[1],Turn_Out);
+
+            //第2位为距离、Length_Flag为标记距�?
+            //OpenMV_Rx_Data[2]
+            Length = OpenMV_Rx_Data[1];
+            if(Length - Length_Flag<0){
+                Paralell_Flag = 1;
+                Forward(200,200);
+                //执行平移操作
+                //执行抓取操作
+            }
+
+
+            //第3位为元素识别标志
+            //OpenMV_Rx_Data[3]
+            Stop_Flag = OpenMV_Rx_Data[2];
+            if(Stop_Flag){
+                //识别到之后，�?始进行抓�?
+                State = 0;
+                //左右平移（根据x偏差�?
+                //对准�? 进行Length判断
+            }
+
           memset(OpenMV_Rx_Data, 0, sizeof(OpenMV_Rx_Data));
       }
       else OpenMV_Check_Data_Task();
 
-      if(xunji_status==0)
+
+      //夹取物体状�??
+      if(State==0)
       {
-          //正常循迹状�?�代码实�?
+          //平移
+          if(Paralell_Flag == 1){
+
+              Forward(0,0);
+              //平移标志�? = 1�?
+              //夹取动作�?
+              //�?
+              Arm_Shen();
+              //前进�?段距�?
+              Forward(200,200);
+              HAL_Delay(1000);
+              //夹取
+              Arm_Jia();
+              HAL_Delay(1000);
+
+              Arm_Suo();
+              //停止标志位�?�然后继续进入巡�?
+              State  = 1;
+              Paralell_Flag = 0;
+          }
+          else{
+
+              err_x<0?-err_x:err_x;
+              if(err_x> 20){
+
+                  Para_Out = PID_Update(&PID_x,err_x);
+                  Para_Out>0?Para_Out:-Para_Out;//绝对�?
+
+                  if(err_x > 0){
+                      Translate_Move("Left",Para_Out);
+                  }
+                  else if(err_x < 0){
+                      Translate_Move("Right",Para_Out);
+                  }
+              }
+          }
+      }
+      //巡线状�??
+      else if(State==1)
+      {
+
+          //误差压入PID，给出差�?
+          //这里不能使用err_x了，而是应该用中线斜�?
+          int Left_Sensor = HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_2);
+          int Right_Sensor = HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_3);
+
+          if(Left_Sensor==0&&Right_Sensor==0){
+                            Forward(300,300);
+//              State = 0;
+
+          }
+          else if(Left_Sensor==1&&Right_Sensor==1)Forward(300,300);
+          else if(Left_Sensor==0&&Right_Sensor==1)Forward(0,300);
+          else if(Left_Sensor==1&&Right_Sensor==0)Forward(300,0);
+
+            //当识别到元素
+
       }
 
-      else if(xunji_status==1)
-      {
 
-      }
-      if (OpenMV_Rx_Data_Analysis_State2)
-      {
-
-          //下面是对无线串口采集到的数据进行处理的函数，每次接收到一次有效数据之后处理一�??
-
-          chasu = PID_Update(&PID_x,dt,OpenMV_Rx_Data2[0]);
-          // 发送数据
-          char txData[] = "Hello, UART!\r\n";
-          HAL_UART_Transmit(&huart2, (uint8_t *)txData, strlen(txData), HAL_MAX_DELAY);
-//              if(OpenMV_Rx_Data2[2]<20)
-//              {
-//                  stop_flag=0;
-//                  if(OpenMV_Rx_Data2[1]<3)chasu_flag=0;
-//              }
-
-          OpenMV_Rx_Data_Analysis_State2 = 0;
-          memset(OpenMV_Rx_Data2, 0, sizeof(OpenMV_Rx_Data2));
-      }
-      else OpenMV_Check_Data_Task2();
-      Forward(setspeed*stop_flag+chasu*chasu_flag,setspeed*stop_flag-chasu*chasu_flag);//输入左轮 右轮的�?�度
-//      Forward(chasu,-chasu);//输入左轮 右轮的�?�度
-//      Forward(500,500);//输入左轮 右轮的�?�度
-
+      //防打架Delay
       HAL_Delay(100);
 
   }

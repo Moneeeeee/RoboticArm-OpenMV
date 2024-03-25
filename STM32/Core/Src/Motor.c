@@ -243,16 +243,15 @@ void Translate_Move(char *Dir, uint16_t speed) {
 }
 
 // 更新PID控制器状态
-int PID_Update(PIDController *pid, int dt,int err) {
-    // 计算误差
-//    int error = pid->target_position - pid->current_position;
+int PID_Update(PIDController *pid,int err) {
+
 
     int error = err;
     // 计算积分项
-    pid->integral += error * dt;
+    pid->integral += error;
 
     // 计算微分项
-    int derivative = (error - pid->prev_error) / dt;
+    int derivative = (error - pid->prev_error);
 
     // 计算控制输出
     int output = KP * error + KI * pid->integral + KD * derivative;
@@ -263,137 +262,11 @@ int PID_Update(PIDController *pid, int dt,int err) {
     return output;
 }
 
-void PIDController_Init(int member1, int member2, PIDController *PID_x, PIDController *PID_y) {
+void PIDController_Init(int member1, PIDController *PID_x) {
     // 初始化第一个PIDController结构体的成员变量
     PID_x->target_position = 0;           // 设置目标位置
     PID_x->current_position = member1;    // 设置当前位置
     PID_x->prev_error = 0;                // 初始化前一次误差
     PID_x->integral = 0;                  // 初始化积分项
 
-    // 初始化第二个PIDController结构体的成员变量
-    PID_y->target_position = 0;           // 设置目标位置
-    PID_y->current_position = member2;    // 设置当前位置
-    PID_y->prev_error = 0;                // 初始化前一次误差
-    PID_y->integral = 0;                  // 初始化积分项
 }
-
-
-void Servo_1_SetAngle(uint8_t angle)//   input 0~180
-{
-    // 将角度转换为对应的脉冲宽度
-    uint16_t pulse_width = 500 + (angle * 11); // 将角度映射到500µs到2500µs范围内
-
-    // 设置PWM脉冲宽度
-        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pulse_width);
-}
-
-void Servo_2_SetAngle(uint8_t angle)
-{
-    // 将角度转换为对应的脉冲宽度
-    uint16_t pulse_width = 500 + (angle * 11); // 将角度映射到500µs到2500µs范围内
-
-    // 设置PWM脉冲宽度
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, pulse_width);
-}
-
-
-void Servo_3_SetAngle(uint8_t angle)
-{
-    // 将角度转换为对应的脉冲宽度
-    uint16_t pulse_width = 500 + (angle * 11); // 将角度映射到500µs到2500µs范围内
-
-    // 设置PWM脉冲宽度
-    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, pulse_width);
-}
-
-
-void Steer_Angle(uint8_t angle)
-{
-
-}
-
-#define SERVO_LEFT   600
-#define SERVO_RIGHT  600
-#define SERVO_CARRY  600
-
-void Steer_Init(void)
-{
-
-    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
-
-    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);
-
-    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3);
-
-
-    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,SERVO_LEFT); //相当于一个周期内（20ms）有0.5ms高脉冲
-
-    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,SERVO_RIGHT); //相当于一个周期内（20ms）有0.5ms高脉冲
-
-    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,SERVO_CARRY); //相当于一个周期内（20ms）有0.5ms高脉冲
-
-
-
-}
-
-
-
-
-void Steer_Control(uint8_t forword,uint8_t height,uint8_t carry){
-
-//    //角度转化---->PWM值
-//    uint8_t forward_angle = forword * kp;
-//    uint8_t height_angle = height * kp;
-//    uint8_t carry_angle = carry * kp;
-//
-//
-
-    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,SERVO_LEFT); //相当于一个周期内（20ms）有0.5ms高脉冲
-
-    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,SERVO_RIGHT); //相当于一个周期内（20ms）有0.5ms高脉冲
-
-    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,SERVO_CARRY); //相当于一个周期内（20ms）有0.5ms高脉冲
-
-
-}
-//
-//void  Extend_STEER(){
-//
-//    //机械臂前伸
-//
-//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
-//
-//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
-//
-//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
-//
-//
-//}
-//
-//void  Retract_STEER(){
-//
-////机械臂后缩
-//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
-//
-//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
-//
-//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
-//
-//
-//}
-//
-//void  Grasp_STEER(){
-//
-////    机械臂抓取
-//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
-//
-//
-//}
-//
-//void  Release_STEER(){
-//
-//      //    机械臂松开
-//    __HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,WATTINGTOMEASURE); //相当于一个周期内（20ms）有0.5ms高脉冲
-//
-//
-//}
